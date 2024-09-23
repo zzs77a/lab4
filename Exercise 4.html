@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        button {
+          width: 170px;
+          height: 50px;
+          font-size: 20px;
+          padding: 10px;
+        }
+      </style>
+</head>
+
+<body>
+    <h1 id="output">please enter the number</h1>
+
+    <input type="number" id="inputNumber" placeholder="please input your number">
+
+
+    <button id='submit' onclick="displayNumber()" style="display: block;" >submit</button>
+    <button id="resetButton" onclick="reset()" style="display: none;">restart</button>
+
+    <ol id="numberList"></ol>
+
+    <script>
+        let a = Math.floor(Math.random() * 100) + 1;
+        let b = 0;
+        let numberList = document.getElementById('numberList');
+        let resetButton = document.getElementById('resetButton');
+        let submit = document.getElementById('submit');
+        let output=document.getElementById('output');
+        let inputNumber=document.getElementById('inputNumber');
+        function displayNumber() {
+            b++;
+            var number = document.getElementById('inputNumber').value;
+
+
+            if (a > number) {
+                document.getElementById('output').innerText = "less";
+            }
+            else if (a < number) { document.getElementById('output').innerText = "more"; }
+            else {
+                document.getElementById('output').innerText = "correct";
+                resetButton.style.display = 'block';
+            }
+            if (b == 10 || a == number) {
+                resetButton.style.display = 'block';
+                submit.style.display = 'none';
+            }
+
+            let numberlist = document.createElement('li');
+            numberlist.textContent = number;
+            numberList.appendChild(numberlist);
+            
+        }
+
+        function reset() {
+            numberList.innerHTML = '';
+            a = Math.floor(Math.random() * 100) + 1;
+            resetButton.style.display = 'none';
+            b = 0;
+            submit.style.display = 'block';
+            output.innerHTML='please enter the number';
+            document.getElementById('inputNumber').value = ''; 
+        }
+    </script>
+
+
+
+</body>
+
+</html>
